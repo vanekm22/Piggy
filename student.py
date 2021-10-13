@@ -28,7 +28,7 @@ class Piggy(PiggyParent):
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
         self.set_servo(self.SERVO_1, self.MIDPOINT)
-        
+
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
@@ -41,6 +41,7 @@ class Piggy(PiggyParent):
                 "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit)
+                "v": ("Vanek Test", self.vanek)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -55,7 +56,12 @@ class Piggy(PiggyParent):
     STUDENT PROJECTS
     ****************
     '''
-
+    def vanek(self):
+      for i in range(4):
+        self.fwd()
+        self.sleep(2)
+        self.turn_to_deg(90)
+        
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
         # TODO: check to see if it's safe before dancing
