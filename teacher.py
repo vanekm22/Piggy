@@ -58,7 +58,8 @@ class PiggyParent(gopigo3.GoPiGo3):
                 time.sleep(1)
                 self.stop()
                 response = str.lower(input("Reduce left, Increase left or drive? (r/i/d): "))
-                amount = int(input("by how much would you like to change the value? (number)"))
+                if response in "r" or response in "i":
+                  amount = int(input("by how much would you like to change the value? (number)"))
                 if response == 'r':
                     self.LEFT_DEFAULT -= amount
                 elif response == 'i':
