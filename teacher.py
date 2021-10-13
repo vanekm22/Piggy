@@ -53,7 +53,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             while True:
                 self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
                 self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
-                print("LEFT: {} // RIGHT: {} ".format(self.MOTOR_LEFT, self.MOTOR_RIGHT))
+                print("LEFT: {} // RIGHT: {} ".format(self.LEFT_DEFAULT, self.RIGHT_DEFAULT))
                 self.fwd()
                 time.sleep(1)
                 self.stop()
