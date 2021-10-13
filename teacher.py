@@ -110,6 +110,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # error check
         error = 4
+        lowest_speed = 10
         goal = abs(deg) % 360
         current = self.get_heading()
 
@@ -121,7 +122,10 @@ class PiggyParent(gopigo3.GoPiGo3):
         
         # while loop - keep turning until my gyro says I'm there
         while abs(deg - self.get_heading()) > error:
-            turn(primary=50, counter=-50)
+            turn_speed = goal - self.get_heading()
+            if turn_speed < lowest_speed:
+              turn_speed = lowest_speed
+            turn(primary=turn_speed, counter=-turn_speed)
             #time.sleep(.05) # avoid spamming the gyro
 
         # once out of the loop, hit the brakes
