@@ -59,9 +59,9 @@ class PiggyParent(gopigo3.GoPiGo3):
                 self.stop()
                 response = str.lower(input("Reduce left, reduce right or drive? (l/r/d): "))
                 if response == 'l':
-                    self.LEFT_SPEED -= 5
+                    self.LEFT_DEFAULT -= 5
                 elif response == 'r':
-                    self.RIGHT_SPEED -= 5
+                    self.RIGHT_DEFAULT -= 5
                 elif response == 'd':
                     self.fwd()
                     time.sleep(1)
