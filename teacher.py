@@ -110,7 +110,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # error check
         error = 4
-        lowest_speed = 10
+        lowest_speed = 20
         goal = abs(deg) % 360
         current = self.get_heading()
 
