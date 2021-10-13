@@ -104,10 +104,12 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.turn_to_deg(goal)
 
     def turn_to_deg(self, deg):
+
         """Turns to a degree relative to the gyroscope's readings. If told 20, it
         will rotate until the gyroscope reads 20."""
 
         # error check
+        error = 4
         goal = abs(deg) % 360
         current = self.get_heading()
 
@@ -118,8 +120,8 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(deg - self.get_heading()) > 4:
-            turn(primary=70, counter=-70)
+        while abs(deg - self.get_heading()) > error:
+            turn(primary=50, counter=-50)
             #time.sleep(.05) # avoid spamming the gyro
 
         # once out of the loop, hit the brakes
