@@ -57,7 +57,7 @@ class Piggy(PiggyParent):
     ****************
     '''
     def doe(self):
-      deg_fwd(360)
+      self.deg_fwd(360)
       
 
     def dance(self):
