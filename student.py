@@ -57,7 +57,8 @@ class Piggy(PiggyParent):
     ****************
     '''
     def doe(self):
-      pass
+      deg_fwd(360)
+      
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
