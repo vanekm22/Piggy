@@ -41,7 +41,7 @@ class Piggy(PiggyParent):
                 "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit),
-                "v": ("Vanek Test", self.vanek)
+                "d": ("John Doe Test", self.doe)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -56,13 +56,8 @@ class Piggy(PiggyParent):
     STUDENT PROJECTS
     ****************
     '''
-    def vanek(self):
-      
-      for i in range(4):
-        self.fwd()
-        time.sleep(2)
-        self.stop()
-        self.turn_by_deg(90)
+    def doe(self):
+      pass
       
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
