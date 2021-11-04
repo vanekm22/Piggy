@@ -57,18 +57,23 @@ class Piggy(PiggyParent):
     ****************
     '''
     def doe(self):
+      #  create square
       self.deg_fwd(360)
       time.sleep(3)
+      self.deg_fwd(360)
+      '''
       self.right(primary = 40, counter = -40)
-      time.sleep(1)
+      time.sleep(1.2)
       self.stop()
-      
+      '''
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
         # TODO: check to see if it's safe before dancing
         
         # lower-ordered example...
+        
+        # create dance
         self.right(primary=50, counter=50)
         time.sleep(2)
         self.stop()
