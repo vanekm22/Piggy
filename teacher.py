@@ -111,7 +111,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         """Turns to a degree relative to the gyroscope's readings. If told 20, it will rotate until the gyroscope reads 20."""
 
         # error check
-        error = 4
+        error = 1
         lowest_speed = 20
         highest_speed = 100
         goal = abs(deg) % 360
