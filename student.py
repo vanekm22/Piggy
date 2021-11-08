@@ -58,7 +58,8 @@ class Piggy(PiggyParent):
     '''
     def doe(self):
       #  create square
-      self.gyro_turn(90)
+      #self.gyro_turn(90)
+      self.get_heading()
 
 
 
