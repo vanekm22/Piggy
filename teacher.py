@@ -113,6 +113,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # error check
         error = 4
         lowest_speed = 20
+        highest_speed = 100
         goal = abs(deg) % 360
         current = self.get_heading()
         print ("AT: " + str(current))
@@ -128,6 +129,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         while abs(goal - self.get_heading()) > error:
             print("turning")
             turn_speed = abs(goal - self.get_heading())
+            if turn_speed > highest_speed:
+              turn_speed = highest_speed
             if turn_speed < lowest_speed:
               turn_speed = lowest_speed
             turn(primary=turn_speed, counter=-turn_speed)
