@@ -31,6 +31,7 @@ class Piggy(PiggyParent):
           return False
           break
         sensor += 10
+        time.sleep(.25)
         return True
 
     def load_defaults(self):
