@@ -58,7 +58,7 @@ class Piggy(PiggyParent):
     '''
     def doe(self):
       #  create square
-      self.deg_fwd(360)
+      self.time_fwd(1)
 
 
 

@@ -12,6 +12,8 @@ Here are the building blocks from the `teacher.py` file you can use in your chal
 
 * `deg_fwd(angle)` - how many degrees do you want your wheels to rotate? You need to pass the _angle_
 
+* `time_fwd(seconds)` - how many seconds do you want your wheels to rotate? You need to pass the _time in seconds_
+
 * `turn_to_deg(angle)` - rotates to the given angle as calculated by the piggy's gyroscope
 
 * `turn_by_deg(angle)` - turns relative to it's current heading. Positive values rotate right and negative rotate left

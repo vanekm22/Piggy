@@ -89,7 +89,6 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         while (self.get_motor_encoder(self.MOTOR_RIGHT) < deg):
           self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
-          print(self.get_motor_encoder(self.MOTOR_RIGHT))
         self.stop()
 
     def turn_by_deg(self, deg):
@@ -107,6 +106,11 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # call turn to deg on the delta
         self.turn_to_deg(goal)
+
+    def time_fwd (self, seconds):
+      self.fwd()
+      time.sleep(seconds)
+      self.stop
 
     def turn_to_deg(self, deg):
 
