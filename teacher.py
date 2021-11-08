@@ -83,13 +83,12 @@ class PiggyParent(gopigo3.GoPiGo3):
 
     def deg_fwd(self, deg):
         """Zeroes current encorder values then moves forward based on degrees given"""
-        print (self.get_motor_encoder(self.MOTOR_LEFT))
-
+        
         self.offset_motor_encoder(self.MOTOR_LEFT, self.get_motor_encoder(self.MOTOR_LEFT))
-
-        print (self.get_motor_encoder(self.MOTOR_LEFT))
         self.offset_motor_encoder(self.MOTOR_RIGHT, self.get_motor_encoder(self.MOTOR_RIGHT))
-        self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
+
+        while (self.get_motor_encoder(self.MOTOR_LEFT) < deg):
+          self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
         self.stop()
 
     def turn_by_deg(self, deg):
