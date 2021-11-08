@@ -23,16 +23,6 @@ class Piggy(PiggyParent):
         self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
         self.load_defaults()
 
-    def surroundings_clear(self):
-      sensor = 1000
-      while sensor < 2000:
-        self.servo(sensor)
-        if self.read_distance() < 500:
-          return False
-        sensor += 100
-        time.sleep(.25)
-      return True
-
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
@@ -51,7 +41,7 @@ class Piggy(PiggyParent):
                 "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit),
-                "d": ("John Doe Test", self.doe)
+                "v": ("Vanek Test", self.vanek)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -66,30 +56,8 @@ class Piggy(PiggyParent):
     STUDENT PROJECTS
     ****************
     '''
-    def doe(self):
-      #  create square
-      #self.gyro_turn(90)
-
-      if self.surroundings_clear():
-        print("All Clear")
-      else:
-        print("Not enough room")
-
-
-      '''while True:
-        self.read_distance()
-        time.sleep(1)
-      '''
-
-
-
-
-      
-      '''
-      self.right(primary = 40, counter = -40)
-      time.sleep(1.2)
-      self.stop()
-      '''
+    def vanek(self):
+      pass
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
