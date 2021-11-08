@@ -113,7 +113,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # error check
         error = 1
         lowest_speed = 20
-        highest_speed = 100
+        highest_speed = 80
         goal = abs(deg) % 360
         current = self.get_heading()
         print ("AT: " + str(current))
@@ -127,7 +127,6 @@ class PiggyParent(gopigo3.GoPiGo3):
         
         # while loop - keep turning until my gyro says I'm there
         while abs(goal - self.get_heading()) > error:
-            print("turning")
             turn_speed = abs(goal - self.get_heading())
             if turn_speed > highest_speed:
               turn_speed = highest_speed
