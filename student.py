@@ -58,8 +58,12 @@ class Piggy(PiggyParent):
     '''
     def doe(self):
       #  create square
-      self.deg_fwd(360)
+      self.fwd()
       time.sleep(3)
+      self.stop()
+
+
+
       self.deg_fwd(360)
       '''
       self.right(primary = 40, counter = -40)
