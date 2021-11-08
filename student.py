@@ -29,10 +29,9 @@ class Piggy(PiggyParent):
         self.servo(sensor)
         if self.read_distance() < 500:
           return False
-          break
         sensor += 10
         time.sleep(.25)
-        return True
+      return True
 
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
