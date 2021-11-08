@@ -92,8 +92,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
 
     def gyro_turn(self, deg):
-      """Rotates robot relative to it's current heading. If told -20, it
-        will rotate left by 20 degrees."""
+        """Rotates robot relative to it's current heading. If told -20, it will rotate left by 20 degrees."""
 
         # get our current angle
         current = self.get_heading()
