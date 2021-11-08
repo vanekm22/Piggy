@@ -58,7 +58,8 @@ class Piggy(PiggyParent):
     '''
     def doe(self):
       #  create square
-      self.time_fwd(1)
+      while True:
+        print (self.get_heading())
 
 
 
