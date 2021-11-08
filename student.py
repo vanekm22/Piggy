@@ -22,7 +22,17 @@ class Piggy(PiggyParent):
         self.MIDPOINT = 1475  # what servo command (1000-2000) is straight forward for your bot?
         self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
         self.load_defaults()
-        
+
+    def surroundings_clear(self):
+      sensor = 1000
+      while sensor < 2000:
+        self.servo(sensor)
+        if self.read_distance() < 500:
+          return False
+          break
+        sensor += 10
+        return True
+
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
@@ -59,10 +69,17 @@ class Piggy(PiggyParent):
     def doe(self):
       #  create square
       #self.gyro_turn(90)
-      
-      while True:
+
+      if self.surroundings_clear():
+        print("All Clear")
+      else:
+        print("Not enough room")
+
+
+      '''while True:
         self.read_distance()
         time.sleep(1)
+      '''
 
 
 
