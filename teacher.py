@@ -86,6 +86,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.offset_motor_encoder(self.MOTOR_LEFT, self.get_motor_encoder(self.MOTOR_LEFT))
         self.offset_motor_encoder(self.MOTOR_RIGHT, self.get_motor_encoder(self.MOTOR_RIGHT))
         self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
+        self.stop()
 
     def turn_by_deg(self, deg):
         """Rotates robot relative to it's current heading. If told -20, it
