@@ -59,8 +59,9 @@ class Piggy(PiggyParent):
     def doe(self):
       #  create square
       #self.gyro_turn(90)
+      
       while True:
-        self.get_heading()
+        self.read_distance()
         time.sleep(1)
 
 
