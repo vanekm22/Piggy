@@ -110,7 +110,7 @@ class PiggyParent(gopigo3.GoPiGo3):
     def time_fwd (self, seconds):
       self.fwd()
       time.sleep(seconds)
-      self.stop
+      self.stop()
 
     def turn_to_deg(self, deg):
 
