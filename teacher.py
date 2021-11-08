@@ -87,7 +87,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.offset_motor_encoder(self.MOTOR_LEFT, self.get_motor_encoder(self.MOTOR_LEFT))
         self.offset_motor_encoder(self.MOTOR_RIGHT, self.get_motor_encoder(self.MOTOR_RIGHT))
 
-        while (self.get_motor_encoder(self.MOTOR_LEFT) < deg):
+        while (self.get_motor_encoder(self.MOTOR_RIGHT) < deg):
           self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
           print(self.get_motor_encoder(self.MOTOR_RIGHT))
         self.stop()
