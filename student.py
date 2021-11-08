@@ -29,7 +29,7 @@ class Piggy(PiggyParent):
         self.servo(sensor)
         if self.read_distance() < 500:
           return False
-        sensor += 10
+        sensor += 100
         time.sleep(.25)
       return True
 
