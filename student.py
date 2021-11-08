@@ -60,6 +60,7 @@ class Piggy(PiggyParent):
       #  create square
       while True:
         print (self.get_heading())
+        time.sleep(.5)
 
 
 
