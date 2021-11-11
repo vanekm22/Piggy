@@ -56,12 +56,26 @@ class Piggy(PiggyParent):
     STUDENT PROJECTS
     ****************
     '''
+
     def vanek(self):
-      pass
+      while True:
+        print self.read_distance()
+
+    def square(self):
+      self.fwd()
+      time.sleep(2)
+      self.stop()
+
+      self.right()
+      time.sleep(0.75)
+      self.stop()
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
-        # TODO: check to see if it's safe before dancing
+        if safe_to_dance():
+          pass
+          
+          # TODO: check to see if it's safe before dancing
         
         # lower-ordered example...
         
@@ -73,7 +87,7 @@ class Piggy(PiggyParent):
 
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe """
-        pass
+        return True
 
     def shake(self):
         """ Another example move """
