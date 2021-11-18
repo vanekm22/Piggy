@@ -58,7 +58,7 @@ class Piggy(PiggyParent):
     '''
 
     def vanek(self):
-        self.gyro_turn(45)
+        self.gyro_turn(-90)
         
     def square(self):
       self.fwd()
