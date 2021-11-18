@@ -95,7 +95,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         """Rotates robot relative to it's current heading. If told -20, it will rotate left by 20 degrees."""
 
         # get our current angle
-        current = self.get_heading()
+        current = self.get_heading(print = True)
 
         # calculate delta
         goal = current + deg
