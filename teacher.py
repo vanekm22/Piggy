@@ -136,13 +136,14 @@ class PiggyParent(gopigo3.GoPiGo3):
               turn_speed = highest_speed
             if (turn_speed < lowest_speed):
               turn_speed = lowest_speed
-            turn(primary=turn_speed, counter=-turn_speed)
             if (turn_speed == lowest_speed):
               close = True
             if ( close and self.get_heading(print = False) > goal ):
               turn = self.left
             elif( ( close and self.get_heading(print = False) < goal ):
               turn = self.right
+
+            turn(primary=turn_speed, counter=-turn_speed)
 
         # once out of the loop, hit the brakes
         self.stop()
