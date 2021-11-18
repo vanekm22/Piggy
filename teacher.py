@@ -149,6 +149,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 turn = self.right
 
               turn(primary=turn_speed, counter=-turn_speed)
+          self.stop()
           checks -= 1
 
 
