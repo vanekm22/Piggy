@@ -136,7 +136,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             if (turn_speed < lowest_speed):
               turn_speed = lowest_speed
             turn(primary=turn_speed, counter=-turn_speed)
-            #time.sleep(.05) # avoid spamming the gyro
+            time.sleep(.05) # avoid spamming the gyro
 
         # once out of the loop, hit the brakes
         self.stop()
