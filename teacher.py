@@ -127,7 +127,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(goal - self.get_heading(printing = False)) > error:
+        while abs(goal - self.get_heading(False)) > error:
             if (goal > self.get_heading(printing = False)):
               turn_speed = abs(goal - self.get_heading(printing = False))
             elif (self.get_heading(printing = False) > goal):
@@ -138,9 +138,9 @@ class PiggyParent(gopigo3.GoPiGo3):
               turn_speed = lowest_speed
             if (turn_speed == lowest_speed):
               close = True
-            if ( close and self.get_heading(printing = False) > goal ):
+            if ( close and self.get_heading(printing = False) >= goal ):
               turn = self.left
-            elif( close and self.get_heading(printing = False) < goal ):
+            elif( close and self.get_heading(printing = False) <= goal ):
               turn = self.right
 
             turn(primary=turn_speed, counter=-turn_speed)
