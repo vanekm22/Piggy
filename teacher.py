@@ -112,7 +112,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # error check
         error = 0.5
-        lowest_speed = 20
+        lowest_speed = 19
         highest_speed = 50
         close = False
         checks = 5
