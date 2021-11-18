@@ -140,7 +140,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               close = True
             if ( close and self.get_heading(print = False) > goal ):
               turn = self.left
-            elif( ( close and self.get_heading(print = False) < goal ):
+            elif( close and self.get_heading(print = False) < goal ):
               turn = self.right
 
             turn(primary=turn_speed, counter=-turn_speed)
