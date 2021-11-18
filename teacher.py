@@ -114,7 +114,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         error = 0.25
         lowest_speed = 15
         highest_speed = 50
-        close = false
+        close = False
         goal = abs(deg) % 360
         current = self.get_heading()
         print ("AT: " + str(current))
