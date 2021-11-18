@@ -112,7 +112,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # error check
         error = 0.5
-        lowest_speed = 17
+        lowest_speed = 20
         highest_speed = 50
         close = False
         goal = abs(deg) % 360
@@ -139,10 +139,10 @@ class PiggyParent(gopigo3.GoPiGo3):
             if (turn_speed == lowest_speed):
               close = True
             if ( close and self.get_heading(printing = False) >= goal ):
-              turn_speed = lowest_speed
+              turn_speed = 15
               turn = self.left
             elif( close and self.get_heading(printing = False) <= goal ):
-              turn_speed = lowest_speed
+              turn_speed = 15
               turn = self.right
 
             turn(primary=turn_speed, counter=-turn_speed)
