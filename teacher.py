@@ -111,9 +111,10 @@ class PiggyParent(gopigo3.GoPiGo3):
         """Turns to a degree relative to the gyroscope's readings. If told 20, it will rotate until the gyroscope reads 20."""
 
         # error check
-        error = 0.75
-        lowest_speed = 20
+        error = 0.25
+        lowest_speed = 15
         highest_speed = 50
+        close = false
         goal = abs(deg) % 360
         current = self.get_heading()
         print ("AT: " + str(current))
@@ -126,17 +127,22 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(goal - self.get_heading()) > error:
-            if (goal > self.get_heading()):
-              turn_speed = abs(goal - self.get_heading())
-            elif (self.get_heading() > goal):
-              turn_speed = abs(360 - self.get_heading() + goal)   
+        while abs(goal - self.get_heading(print = False)) > error:
+            if (goal > self.get_heading(print = False)):
+              turn_speed = abs(goal - self.get_heading(print = False))
+            elif (self.get_heading(print = False) > goal):
+              turn_speed = abs(360 - self.get_heading(print = False) + goal)   
             if (turn_speed > highest_speed):
               turn_speed = highest_speed
             if (turn_speed < lowest_speed):
               turn_speed = lowest_speed
             turn(primary=turn_speed, counter=-turn_speed)
-            time.sleep(.05) # avoid spamming the gyro
+            if (turn_speed == lowest_speed):
+              close = True
+            if ( close and self.get_heading(print = False) > goal ):
+              turn = self.left
+            elif( ( close and self.get_heading(print = False) < goal ):
+              turn = self.right
 
         # once out of the loop, hit the brakes
         self.stop()
@@ -185,11 +191,12 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(deg - self.get_heading()) > error:
-            turn_speed = abs(goal - self.get_heading())
+        while abs(deg - self.get_heading(print = False)) > error:
+            turn_speed = abs(goal - self.get_heading(print = False))
             if turn_speed < lowest_speed:
               turn_speed = lowest_speed
             turn(primary=turn_speed, counter=-turn_speed)
+            
             #time.sleep(.05) # avoid spamming the gyro
 
         # once out of the loop, hit the brakes
@@ -245,16 +252,19 @@ class PiggyParent(gopigo3.GoPiGo3):
         print("Distance Sensor Reading: {} mm ".format(d))
         return d
 
-    def get_heading(self):
+    def get_heading(self, print = True):
         """Returns the heading from the IMU sensor, or if there's a sensor exception, it returns
         the last saved reading"""
         try:
             self.gyro_buffer = self.imu.read_euler()[0]
-            print("Gyroscope sensor is at: {} degrees ".format(self.gyro_buffer))
+            if (print):
+              print("Gyroscope sensor is at: {} degrees ".format(self.gyro_buffer))
         except Exception as e:
             print("----- PREVENTED GYRO SENSOR CRASH -----")
             print(e)
         return self.gyro_buffer
+
+        
 
     '''
     SHOWOFF SCRIPTS
