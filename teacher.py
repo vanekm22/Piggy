@@ -111,8 +111,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         """Turns to a degree relative to the gyroscope's readings. If told 20, it will rotate until the gyroscope reads 20."""
 
         # error check
-        error = 0.25
-        lowest_speed = 20
+        error = 0.5
+        lowest_speed = 17
         highest_speed = 50
         close = False
         goal = abs(deg) % 360
@@ -139,8 +139,10 @@ class PiggyParent(gopigo3.GoPiGo3):
             if (turn_speed == lowest_speed):
               close = True
             if ( close and self.get_heading(printing = False) >= goal ):
+              turn_speed = lowest_speed
               turn = self.left
             elif( close and self.get_heading(printing = False) <= goal ):
+              turn_speed = lowest_speed
               turn = self.right
 
             turn(primary=turn_speed, counter=-turn_speed)
