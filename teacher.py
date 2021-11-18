@@ -118,6 +118,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         checks = 5
         goal = abs(deg) % 360
         current = self.get_heading()
+        time.sleep(0.1)
         print ("AT: " + str(current))
         print ("Heading to: " + str(goal))
 
