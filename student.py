@@ -58,10 +58,8 @@ class Piggy(PiggyParent):
     '''
 
     def vanek(self):
-      while True:
-        distance = self.read_distance()
-        print (distance)
-
+        self.gyro_turn(90)
+        
     def square(self):
       self.fwd()
       time.sleep(2)
