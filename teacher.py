@@ -130,7 +130,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             if (goal > self.get_heading()):
               turn_speed = abs(goal - self.get_heading())
             elif (self.get_heading() > goal):
-              turn_speed = abs((360 - self.get_heading() + goal) 
+              turn_speed = abs(360 - self.get_heading() + goal)   
             if (turn_speed > highest_speed):
               turn_speed = highest_speed
             if (turn_speed < lowest_speed):
