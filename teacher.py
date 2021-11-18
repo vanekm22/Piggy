@@ -115,6 +115,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         lowest_speed = 20
         highest_speed = 50
         close = False
+        checks = 5
         goal = abs(deg) % 360
         current = self.get_heading()
         print ("AT: " + str(current))
@@ -127,25 +128,28 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(goal - self.get_heading(False)) > error:
-            if (goal > self.get_heading(printing = False)):
-              turn_speed = abs(goal - self.get_heading(printing = False))
-            elif (self.get_heading(printing = False) > goal):
-              turn_speed = abs(360 - self.get_heading(printing = False) + goal)   
-            if (turn_speed > highest_speed):
-              turn_speed = highest_speed
-            if (turn_speed < lowest_speed):
-              turn_speed = lowest_speed
-            if (turn_speed == lowest_speed):
-              close = True
-            if ( close and self.get_heading(printing = False) >= goal ):
-              turn_speed = 15
-              turn = self.left
-            elif( close and self.get_heading(printing = False) <= goal ):
-              turn_speed = 15
-              turn = self.right
+        while(checks > 0):
+          while abs(goal - self.get_heading(False)) > error:
+              if (goal > self.get_heading(printing = False)):
+                turn_speed = abs(goal - self.get_heading(printing = False))
+              elif (self.get_heading(printing = False) > goal):
+                turn_speed = abs(360 - self.get_heading(printing = False) + goal)   
+              if (turn_speed > highest_speed):
+                turn_speed = highest_speed
+              if (turn_speed < lowest_speed):
+                turn_speed = lowest_speed
+              if (turn_speed == lowest_speed):
+                close = True
+              if ( close and self.get_heading(printing = False) >= goal ):
+                turn_speed = lowest_speed
+                turn = self.left
+              elif( close and self.get_heading(printing = False) <= goal ):
+                turn_speed = lowest_speed
+                turn = self.right
 
-            turn(primary=turn_speed, counter=-turn_speed)
+              turn(primary=turn_speed, counter=-turn_speed)
+          checks -= 1
+
 
         # once out of the loop, hit the brakes
         self.stop()
