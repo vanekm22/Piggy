@@ -102,6 +102,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         error = 0
         error_total = 0
         turning = True
+        starting_angle = self.get_heading(False)
+        target_angle = starting_angle + target_angle
         while(turning):
             error = ( target_angle - self.get_heading(False) )
             error_total += error
@@ -134,7 +136,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         time.sleep(1)
         
         print(powerlist)
-        print ("heading "+ str(self.get_heading()))
+        print ("heading "+ str(self.get_heading(False)))
+        print("trying to get to: " str(target_angle))
 
 
     def gyro_turn(self, deg):
