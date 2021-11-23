@@ -90,6 +90,52 @@ class PiggyParent(gopigo3.GoPiGo3):
           self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
         self.stop()
 
+    def gyro_pid(self, 
+                 target_angle, 
+                 top_speed = 80,
+                 low_speed = 20,
+                 kP  = 2.0, 
+                 kI = 0.0, 
+                 kD = 0.0):
+
+        powerlist = []        
+        error = 0
+        error_total = 0
+        turning = True
+        while(turning):
+            error = ( target_angle - self.get_heading(False) )
+            error_total += error
+            last_error = error
+
+            pTerm = error * kP
+            iTerm = kI * error_total 
+            dTerm = kD * (error - last_error)
+            print(iTerm)
+
+            power = pTerm + iTerm + dTerm
+            
+            if (power > top_speed):
+                power = top_speed
+            elif (power < low_speed):
+                power = low_speed
+            
+            powerlist.append(power)
+        
+
+            #turn wheels
+            if ("r" in "r"):
+                self.set_motor_power(self.MOTOR_LEFT, power)
+                self.set_motor_power(self.MOTOR_RIGHT, -power)
+            
+            if ( abs(self.get_heading(False) - target_angle) < .5 ):
+                self.set_motor_power(self.MOTOR_LEFT, 0.0)
+                self.set_motor_power(self.MOTOR_RIGHT, 0.0)
+                turning = False
+        time.sleep(1)
+        
+        print(powerlist)
+        print ("heading "+ str(self.get_heading()))
+
 
     def gyro_turn(self, deg):
         """Rotates robot relative to it's current heading. If told -20, it will rotate left by 20 degrees."""
