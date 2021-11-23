@@ -93,7 +93,7 @@ class PiggyParent(gopigo3.GoPiGo3):
     def gyro_pid(self, 
                  target_angle, 
                  top_speed = 80,
-                 low_speed = 10,
+                 low_speed = 15,
                  kP  = 1.5, 
                  kI = 0.0, 
                  kD = 0.0):
@@ -112,7 +112,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             pTerm = error * kP
             iTerm = kI * error_total 
             dTerm = kD * (error - last_error)
-            print(self.get_heading(False))
+            
 
             power = pTerm + iTerm + dTerm
             
