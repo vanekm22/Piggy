@@ -93,8 +93,8 @@ class PiggyParent(gopigo3.GoPiGo3):
     def gyro_pid(self, 
                  target_angle, 
                  top_speed = 80,
-                 low_speed = 13,
-                 kP  = 1.5, 
+                 low_speed = 15,
+                 kP  = 1.25, 
                  kI = 0.0, 
                  kD = 0.0):
 
@@ -104,6 +104,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         turning = True
         starting_angle = self.get_heading(False)
         target_angle = starting_angle + target_angle
+        time.sleep(0.5)
         while(turning):
             error = ( target_angle - self.get_heading(False) )
             error_total += error
