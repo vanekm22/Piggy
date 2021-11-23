@@ -137,7 +137,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         
         print(powerlist)
         print ("heading "+ str(self.get_heading(False)))
-        print("trying to get to: " str(target_angle))
+        print("trying to get to: " + str(target_angle))
 
 
     def gyro_turn(self, deg):
