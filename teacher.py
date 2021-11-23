@@ -110,7 +110,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             pTerm = error * kP
             iTerm = kI * error_total 
             dTerm = kD * (error - last_error)
-            print(iTerm)
+            print(self.get_heading(False))
 
             power = pTerm + iTerm + dTerm
             
