@@ -96,7 +96,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                  low_speed = 15,
                  kP  = 1.25, 
                  kI = 0.0, 
-                 kD = 0.0001):
+                 kD = 0.001):
 
         powerlist = []        
         error = 0
@@ -137,8 +137,9 @@ class PiggyParent(gopigo3.GoPiGo3):
         time.sleep(1)
         
         print(powerlist)
-        print ("heading "+ str(self.get_heading(False)))
-        print("trying to get to: " + str(target_angle))
+        print( "Started at: "+ str(starting_angle) )
+        print ( "Final heading: "+ str(self.get_heading(False)))
+        print( "Trying to get to: " + str(target_angle) )
 
 
     def gyro_turn(self, deg):
