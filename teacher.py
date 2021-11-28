@@ -105,9 +105,9 @@ class PiggyParent(gopigo3.GoPiGo3):
         turning = True
         starting_angle = self.get_heading(False)
 
-        if (starting_angle + target_angle >= 360):
+        if (starting_angle + target_angle > 360):
             starting_angle -= 360
-        elif (starting_angle + target_angle <= 0):
+        elif (starting_angle + target_angle < 0):
             starting_angle += 360
         
         destination_angle = starting_angle + target_angle
@@ -130,6 +130,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               current_heading += 360
             
             error = abs( destination_angle - current_heading )
+             
             print (error)
             if ( error <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
