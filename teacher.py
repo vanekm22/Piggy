@@ -97,7 +97,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                  kP  = 0.75,
                  kI = 0, 
                  kD = 0,
-                 acceptable_ending_error = 5):
+                 acceptable_ending_error = 1):
 
         # Logfile of power added to my turn each frame 
         powerlist = []  
