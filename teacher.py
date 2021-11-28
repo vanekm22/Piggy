@@ -145,12 +145,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             elif ( current_heading + error < 0):
               current_heading += 360
             '''
-
-            if ("right" in turn_direction):
-                print("Went Past Angle")
-                error = ( current_heading - destination_angle ) % 360
-            else:
-                error = (destination_angle - current_heading ) % 360 
+            error = (destination_angle - current_heading ) % 360 
             #print (error)
             
             if ( error <= acceptable_ending_error ):
@@ -174,8 +169,10 @@ class PiggyParent(gopigo3.GoPiGo3):
               elif (power < low_speed):
                   power = low_speed
 
-              
-              
+               
+              if (current_heading > destination_angle):# and "right" in turn_direction:
+                print("Went Past Angle")
+                power = -power
               powerlist.append(power)
           
 
