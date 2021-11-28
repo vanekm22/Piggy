@@ -95,8 +95,8 @@ class PiggyParent(gopigo3.GoPiGo3):
                  top_speed = 80,
                  low_speed = 18,
                  kP  = 0.4,
-                 kI = 0.0001, 
-                 kD = 0.0,
+                 kI = 0, 
+                 kD = 0,
                  acceptable_ending_error = 1):
 
         # Logfile of power added to my turn each frame 
@@ -119,7 +119,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         '''
         # determine what angle I am going to -- important if it wraps.
         # destination_angle = starting_angle + target_angle
-        destination_angle = (starting_angle + target_angle) %360
+        destination_angle = (starting_angle + target_angle) % 360
         # determine the direction of the turn
         #if starting_angle < target_angle + starting_angle:
         turn_direction = "right"
