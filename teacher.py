@@ -135,6 +135,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
                 self.set_motor_power(self.MOTOR_RIGHT, 0.0)
                 turning = False
+                break
 
             else:
               error_total += error
