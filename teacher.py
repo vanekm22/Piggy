@@ -95,8 +95,8 @@ class PiggyParent(gopigo3.GoPiGo3):
                  top_speed = 80,
                  low_speed = 20,
                  kP  = 0.75,
-                 kI = 0.05, 
-                 kD = 0.05,
+                 kI = 0.001, 
+                 kD = 0.001,
                  acceptable_ending_error = 1):
 
         # Logfile of power added to my turn each frame 
