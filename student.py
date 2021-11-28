@@ -60,12 +60,7 @@ class Piggy(PiggyParent):
     def vanek(self):
         
         #print( self.scan(50) )
-        for i in range(4):
-          self.gyro_pid(90)
-          time.sleep(2)
-        for i in range(4):
-          self.gyro_pid(-90)
-          time.sleep(2)
+        gyro_pid(90)
         
         
 
