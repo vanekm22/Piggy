@@ -127,7 +127,7 @@ class Piggy(PiggyParent):
             time.sleep(0.25)
             scan_data.append( self.read_distance() )
         self.servo(self.MIDPOINT)
-        self.sleep(0.5)
+        time.sleep(0.5)
         return scan_data
 
 
