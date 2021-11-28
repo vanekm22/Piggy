@@ -106,7 +106,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         error = 0
         error_total = 0
         turning = True
-        starting_angle = self.get_heading(False) % 360
+        starting_angle = self.get_heading(False)
 
         # If I'm at an endpoint for the loop, bring my starting angle to a number
         # above or below my turn (depending on if my target angle is + or -)
@@ -132,7 +132,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # Do the actual turn
         while(turning):
             # Get current gyro position
-            current_heading = self.get_heading(False) % 360
+            current_heading = self.get_heading(False)
 
             # Wrap the number if we are going across the endpoint.
             # current_heading = (current_heading + error) %360
@@ -166,7 +166,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               elif (power < low_speed):
                   power = low_speed
 
-               
+              ''' 
               if (current_heading > destination_angle):# and "right" in turn_direction:
                 print("Went Past Angle")
                 self.stop()
@@ -175,6 +175,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 print ("target angle: " + str(destination_angle))
                 break
                 power = -low_speed
+              '''
               powerlist.append(power)
           
 
