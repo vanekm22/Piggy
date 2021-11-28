@@ -119,6 +119,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         target_angle = starting_angle + target_angle
         time.sleep(0.5)
         error = abs(destination_angle - starting_angle)
+        
         while(turning):
             current_heading = self.get_heading(False)
             if ( current_heading + error >= 360):
@@ -126,39 +127,40 @@ class PiggyParent(gopigo3.GoPiGo3):
             elif ( current_heading + error <= 0):
               current_heading += 360
             error = abs( destination_angle - current_heading )
+
             if ( error <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
                 self.set_motor_power(self.MOTOR_RIGHT, 0.0)
                 turning = False
-                break
-                
-            error_total += error
-            last_error = error
 
-            pTerm = error * kP
-            iTerm = kI * error_total 
-            dTerm = kD * (error - last_error)
-            
-
-            power = pTerm + iTerm + dTerm
-            
-            if (power > top_speed):
-                power = top_speed
-            elif (power < low_speed):
-                power = low_speed
-            
-            if current_heading > target_angle and "right" in turn_direction:
-              power = -power
-            powerlist.append(power)
-        
-
-            #turn wheels
-            if ("right" in turn_direction):
-                self.set_motor_power(self.MOTOR_LEFT, power)
-                self.set_motor_power(self.MOTOR_RIGHT, -power)
             else:
-                self.set_motor_power(self.MOTOR_LEFT, -power)
-                self.set_motor_power(self.MOTOR_RIGHT, power)
+              error_total += error
+              last_error = error
+
+              pTerm = error * kP
+              iTerm = kI * error_total 
+              dTerm = kD * (error - last_error)
+              
+
+              power = pTerm + iTerm + dTerm
+              
+              if (power > top_speed):
+                  power = top_speed
+              elif (power < low_speed):
+                  power = low_speed
+              
+              if current_heading > target_angle and "right" in turn_direction:
+                power = -power
+              powerlist.append(power)
+          
+
+              #turn wheels
+              if ("right" in turn_direction):
+                  self.set_motor_power(self.MOTOR_LEFT, power)
+                  self.set_motor_power(self.MOTOR_RIGHT, -power)
+              else:
+                  self.set_motor_power(self.MOTOR_LEFT, -power)
+                  self.set_motor_power(self.MOTOR_RIGHT, power)
 
             
         
