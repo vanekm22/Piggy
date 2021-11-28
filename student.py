@@ -59,7 +59,7 @@ class Piggy(PiggyParent):
 
     def vanek(self):
         
-        print( self.scan() )
+        print( self.scan(50) )
 
         '''
         ## CLOSER!!
