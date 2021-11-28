@@ -60,8 +60,14 @@ class Piggy(PiggyParent):
     def vanek(self):
         #self.gyro_pid_right(90)
         # check gyro drift
+        last_reading = self.get_heading(True)
         while True:
-          self.get_heading(True)
+          current_reading = self.get_heading(False)
+          if abs(current_reading - last_reading) > 100:
+            while abs(current_reading - last_reading) > 100:
+              current_reading = self.get_heading(False)
+              print ("Found crazy reading")
+          last_reading = current_reading 
         
     def square(self):
       self.fwd()
