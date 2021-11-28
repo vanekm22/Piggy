@@ -146,7 +146,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               current_heading += 360
             '''
             error = (destination_angle - current_heading ) % 360 
-            print (error)
+            #print (error)
             
             if ( error <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
