@@ -60,9 +60,7 @@ class Piggy(PiggyParent):
     def vanek(self):
         
         #print( self.scan(50) )
-        # self.gyro_pid(90)
-        while True:
-          print (self.imu.read_quaternion())
+        self.gyro_pid(90)
         
 
 

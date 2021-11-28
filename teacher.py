@@ -124,11 +124,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         if starting_angle < target_angle + starting_angle:
             turn_direction = "right"
         else:
-          turn_direction = "left"
-        
-        # a sleep for no reason.
-        time.sleep(0.5)
-
+            turn_direction = "left"
+            
         # find initial error.
         error = abs(destination_angle - starting_angle)
         
