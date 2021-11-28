@@ -99,44 +99,54 @@ class PiggyParent(gopigo3.GoPiGo3):
                  kD = 0,
                  acceptable_ending_error = 5):
 
-        powerlist = []
+        # Logfile of power added to my turn each frame 
+        powerlist = []  
+
+        # Set start points of variables
         error = 0
         error_total = 0
         turning = True
         starting_angle = self.get_heading(False)
 
+        # If I'm at an endpoint for the loop, bring my starting angle to a number
+        # above or below my turn (depending on if my target angle is + or -)
         if (starting_angle + target_angle > 360):
             starting_angle -= 360
         elif (starting_angle + target_angle < 0):
             starting_angle += 360
         
+        # determine what angle I am going to -- important if it wraps.
         destination_angle = starting_angle + target_angle
 
+        # determine the direction of the turn
         if starting_angle < target_angle + starting_angle:
             turn_direction = "right"
         else:
           turn_direction = "left"
         
-        
+        # a sleep for no reason.
         time.sleep(0.5)
+
+        # find initial error.
         error = abs(destination_angle - starting_angle)
         
+        # Do the actual turn
         while(turning):
+            # Get current gyro position
             current_heading = self.get_heading(False)
 
+            # Wrap the number if we are going across the endpoint.
             if ( current_heading + error > 360):
               current_heading -= 360
             elif ( current_heading + error < 0):
               current_heading += 360
-            
-            error = abs( destination_angle - current_heading )
-             
+          
+            error = abs( destination_angle - current_heading )   
             print (error)
             if ( error <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
                 self.set_motor_power(self.MOTOR_RIGHT, 0.0)
                 turning = False
-                break
 
             else:
               error_total += error
