@@ -154,7 +154,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 self.set_motor_power(self.MOTOR_LEFT, -power)
                 self.set_motor_power(self.MOTOR_RIGHT, power)
 
-            if ( abs(self.get_heading(False) - target_angle) <= acceptable_ending_error ):
+            if ( abs(current_heading - destination_angle) <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
                 self.set_motor_power(self.MOTOR_RIGHT, 0.0)
                 turning = False
