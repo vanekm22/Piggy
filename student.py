@@ -62,7 +62,7 @@ class Piggy(PiggyParent):
         # check gyro drift
         last_reading = self.get_heading(True)
         while True:
-          current_reading = self.get_heading(False)
+          current_reading = self.get_heading(True)
           if abs(current_reading - last_reading) > 100:
             while abs(current_reading - last_reading) > 100:
               current_reading = self.get_heading(False)
