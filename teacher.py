@@ -104,6 +104,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         error_total = 0
         turning = True
         starting_angle = self.get_heading(False)
+
         if (starting_angle + target_angle >= 360):
             starting_angle -= 360
         elif (starting_angle + target_angle <= 0):
@@ -116,7 +117,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         else:
           turn_direction = "left"
         
-        target_angle = starting_angle + target_angle
+        
         time.sleep(0.5)
         error = abs(destination_angle - starting_angle)
         
@@ -151,7 +152,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               elif (power < low_speed):
                   power = low_speed
               
-              if current_heading > target_angle and "right" in turn_direction:
+              if current_heading > destination_angle and "right" in turn_direction:
                 power = -power
               powerlist.append(power)
           
@@ -171,8 +172,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         final_heading = self.get_heading(False)
         print( "Started at: "+ str(starting_angle) )
         print ( "Final heading: "+ str(final_heading) )
-        print( "Trying to get to: " + str(target_angle) )
-        print ( " Off by: "+ str(abs(final_heading - target_angle)) )
+        print( "Trying to get to: " + str(destination_angle) )
+        print ( " Off by: "+ str(abs(final_heading - destination_angle)) )
 
 
     def gyro_turn(self, deg):
