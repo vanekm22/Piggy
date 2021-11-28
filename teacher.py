@@ -118,11 +118,12 @@ class PiggyParent(gopigo3.GoPiGo3):
         
         target_angle = starting_angle + target_angle
         time.sleep(0.5)
+        error = abs(destination_angle - starting_angle)
         while(turning):
             current_heading = self.get_heading(False)
-            if ( current_heading + target_angle >= 360):
+            if ( current_heading + error >= 360):
               current_heading -= 360
-            elif ( current_heading + target_angle <= 0):
+            elif ( current_heading + error <= 0):
               current_heading += 360
             error = abs( destination_angle - current_heading )
             error_total += error
