@@ -133,7 +133,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             if current_heading > angle and "right" in turn_direction:
               power = -power
             powerlist.append(power)
-        "
+        
 
             #turn wheels
             if ("right" in turn_direction):
