@@ -125,7 +125,7 @@ class Piggy(PiggyParent):
         for angle in range(self.MIDPOINT-400, self.MIDPOINT+400, 100 ):
             self.servo(angle)
             time.sleep(0.25)
-            scan.append( self.read_distance() )
+            scan__data.append( self.read_distance() )
         return scan_data
 
 
