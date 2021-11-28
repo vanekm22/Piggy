@@ -59,12 +59,14 @@ class Piggy(PiggyParent):
 
     def vanek(self):
         
-        print( self.scan(50) )
+        #print( self.scan(50) )
+        self.gyro_pid(-90)
+
+
 
         '''
         ## CLOSER!!
-        self.gyro_pid_right(90)
-
+        
         # check gyro drift
         # take aways == gyro gets crazy errors when printing, but not without.
         last_reading = self.get_heading(True)
