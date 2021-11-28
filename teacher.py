@@ -172,7 +172,9 @@ class PiggyParent(gopigo3.GoPiGo3):
               #This literally never happens  
               if (current_heading > destination_angle):# and "right" in turn_direction:
                 print("Went Past Angle")
-                power = -power
+                turn_direction = "left"
+              else:
+                turn_direction = "right"
               powerlist.append(power)
           
 
