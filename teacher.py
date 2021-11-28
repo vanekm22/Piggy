@@ -130,7 +130,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             elif (power < low_speed):
                 power = low_speed
             
-            if current_heading > angle and "right" in turn_direction:
+            if current_heading > target_angle and "right" in turn_direction:
               power = -power
             powerlist.append(power)
         
