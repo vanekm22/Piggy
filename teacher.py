@@ -109,7 +109,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         elif (starting_angle + target_angle <= 0):
             starting_angle += 360
 
-        if starting_angle < target_angle:
+        if starting_angle < target_angle + starting_angle:
             turn_direction = "right"
         else:
           turn_direction = "left"
