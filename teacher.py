@@ -137,9 +137,11 @@ class PiggyParent(gopigo3.GoPiGo3):
         time.sleep(1)
         
         print(powerlist)
+        final_heading = self.get_heading(False)
         print( "Started at: "+ str(starting_angle) )
-        print ( "Final heading: "+ str(self.get_heading(False)))
+        print ( "Final heading: "+ str(final_heading))
         print( "Trying to get to: " + str(target_angle) )
+        print ( " Off by: "+ str(abs(final_heading - target_angle)))
 
 
     def gyro_turn(self, deg):
