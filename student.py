@@ -120,12 +120,13 @@ class Piggy(PiggyParent):
         self.servo(2000) # look left
 
     def scan(self, resolution = 100, endpoints = 500):
-        scan_data = []
+        #scan_data = []
+        scan_data = { }
         """Sweep the servo and populate the scan_data list"""
         for angle in range( self.MIDPOINT-endpoints, self.MIDPOINT+endpoints, resolution ):
             self.servo(angle)
             time.sleep(0.25)
-            scan_data.append( self.read_distance() )
+            scan_data[angle] =  self.read_distance() 
         self.servo(self.MIDPOINT)
         time.sleep(0.5)
         return scan_data
