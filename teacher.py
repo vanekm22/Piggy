@@ -90,7 +90,7 @@ class PiggyParent(gopigo3.GoPiGo3):
           self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
         self.stop()
 
-    def gyro_pid(self, 
+    def gyro_pid_right(self, 
                  target_angle, 
                  top_speed = 80,
                  low_speed = 16,
