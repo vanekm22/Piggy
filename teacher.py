@@ -146,7 +146,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               current_heading += 360
             '''
 
-            if (current_heading > destination_angle):# and "right" in turn_direction:
+            if ("right" in turn_direction):
                 print("Went Past Angle")
                 error = ( current_heading - destination_angle ) % 360
             else:
