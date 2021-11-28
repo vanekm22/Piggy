@@ -58,9 +58,13 @@ class Piggy(PiggyParent):
     '''
 
     def vanek(self):
-        self.gyro_pid_right(90)
+        
+        print( scan() )
 
         '''
+        ## CLOSER!!
+        self.gyro_pid_right(90)
+
         # check gyro drift
         # take aways == gyro gets crazy errors when printing, but not without.
         last_reading = self.get_heading(True)
@@ -116,10 +120,14 @@ class Piggy(PiggyParent):
         self.servo(2000) # look left
 
     def scan(self):
+        scan_data = []
         """Sweep the servo and populate the scan_data dictionary"""
-        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350, 3):
+        for angle in range(self.MIDPOINT-400, self.MIDPOINT+400, 100 ):
             self.servo(angle)
-            self.scan_data[angle] = self.read_distance()
+            time.sleep(0.25)
+            scan.append( self.read_distance() )
+        return scan_data
+
 
     def obstacle_count(self):
         """Does a 360 scan and returns the number of obstacles it sees"""
