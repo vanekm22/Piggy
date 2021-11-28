@@ -98,7 +98,8 @@ class PiggyParent(gopigo3.GoPiGo3):
                  kI = 0.001, 
                  kD = 0.001):
 
-        powerlist = []        
+        powerlist = []
+        acceptable_ending_error = 1;        
         error = 0
         error_total = 0
         turning = True
@@ -136,7 +137,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 self.set_motor_power(self.MOTOR_LEFT, power)
                 self.set_motor_power(self.MOTOR_RIGHT, -power)
             
-            if ( abs(self.get_heading(False) - target_angle) < .5 ):
+            if ( abs(self.get_heading(False) - target_angle) <= acceptable_ending_error ):
                 self.set_motor_power(self.MOTOR_LEFT, 0.0)
                 self.set_motor_power(self.MOTOR_RIGHT, 0.0)
                 turning = False
