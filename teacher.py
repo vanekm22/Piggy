@@ -95,8 +95,8 @@ class PiggyParent(gopigo3.GoPiGo3):
                  top_speed = 80,
                  low_speed = 20,
                  kP  = 0.75,
-                 kI = 0, 
-                 kD = 0,
+                 kI = 0.05, 
+                 kD = 0.05,
                  acceptable_ending_error = 1):
 
         # Logfile of power added to my turn each frame 
@@ -172,9 +172,7 @@ class PiggyParent(gopigo3.GoPiGo3):
               #This literally never happens  
               if (current_heading > destination_angle):# and "right" in turn_direction:
                 print("Went Past Angle")
-                turn_direction = "left"
-              else:
-                turn_direction = "right"
+                power = -power
               powerlist.append(power)
           
 
