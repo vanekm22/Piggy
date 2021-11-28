@@ -61,7 +61,7 @@ class Piggy(PiggyParent):
         
         #print( self.scan(50) )
         # self.gyro_pid(90)
-        print (self.read_quaternion())
+        print (self.imu.read_quaternion())
         
 
 
