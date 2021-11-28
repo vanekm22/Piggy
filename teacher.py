@@ -106,7 +106,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         error = 0
         error_total = 0
         turning = True
-        starting_angle = self.get_heading(False)
+        starting_angle = self.get_heading(False) % 360
 
         # If I'm at an endpoint for the loop, bring my starting angle to a number
         # above or below my turn (depending on if my target angle is + or -)
@@ -121,7 +121,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # destination_angle = starting_angle + target_angle
         destination_angle = (starting_angle + target_angle) %360
         # determine the direction of the turn
-        if starting_angle % 360 < target_angle + starting_angle:
+        if starting_angle < target_angle + starting_angle:
             turn_direction = "right"
         else:
             turn_direction = "left"
