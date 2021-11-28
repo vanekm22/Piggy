@@ -126,6 +126,12 @@ class PiggyParent(gopigo3.GoPiGo3):
             elif ( current_heading + error <= 0):
               current_heading += 360
             error = abs( destination_angle - current_heading )
+            if ( error <= acceptable_ending_error ):
+                self.set_motor_power(self.MOTOR_LEFT, 0.0)
+                self.set_motor_power(self.MOTOR_RIGHT, 0.0)
+                turning = False
+                break
+                
             error_total += error
             last_error = error
 
@@ -154,10 +160,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                 self.set_motor_power(self.MOTOR_LEFT, -power)
                 self.set_motor_power(self.MOTOR_RIGHT, power)
 
-            if ( abs(current_heading - destination_angle) <= acceptable_ending_error ):
-                self.set_motor_power(self.MOTOR_LEFT, 0.0)
-                self.set_motor_power(self.MOTOR_RIGHT, 0.0)
-                turning = False
+            
         
         time.sleep(1.5)
         print(powerlist)
