@@ -94,7 +94,7 @@ class PiggyParent(gopigo3.GoPiGo3):
                  target_angle, 
                  top_speed = 80,
                  low_speed = 16,
-                 kP  = 1.1, 
+                 kP  = 0.8, 
                  kI = 0, 
                  kD = 0,
                  acceptable_ending_error = 5):
