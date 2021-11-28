@@ -92,14 +92,15 @@ class PiggyParent(gopigo3.GoPiGo3):
 
     def gyro_pid_right(self, 
                  target_angle, 
+                 turn_direction = "right"
                  top_speed = 80,
                  low_speed = 16,
                  kP  = 1.1, 
                  kI = 0, 
-                 kD = 0):
+                 kD = 0,
+                 acceptable_ending_error = 5):
 
         powerlist = []
-        acceptable_ending_error = 1;        
         error = 0
         error_total = 0
         turning = True
@@ -113,7 +114,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             current_heading = self.get_heading(False)
             if ( current_heading + target_angle >= 360):
               current_heading -= 360
-            error = ( target_angle - current_heading )
+            error = abs( target_angle - current_heading )
             error_total += error
             last_error = error
 
@@ -129,11 +130,13 @@ class PiggyParent(gopigo3.GoPiGo3):
             elif (power < low_speed):
                 power = low_speed
             
+            if current_heading > angle and "right" in turn_direction:
+              power = -power
             powerlist.append(power)
-        
+        "
 
             #turn wheels
-            if ("r" in "r"):
+            if ("right" in turn_direction):
                 self.set_motor_power(self.MOTOR_LEFT, power)
                 self.set_motor_power(self.MOTOR_RIGHT, -power)
             
