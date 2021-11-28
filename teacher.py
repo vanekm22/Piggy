@@ -169,6 +169,10 @@ class PiggyParent(gopigo3.GoPiGo3):
                
               if (current_heading > destination_angle):# and "right" in turn_direction:
                 print("Went Past Angle")
+                print ("starting_angle: "+ str(starting_angle))
+                print ("Current angle: " + str(current_heading))
+                print ("target angle: " + str(destination_angle))
+                break
                 power = -low_speed
               powerlist.append(power)
           
