@@ -122,10 +122,12 @@ class PiggyParent(gopigo3.GoPiGo3):
         
         while(turning):
             current_heading = self.get_heading(False)
-            if ( current_heading + error >= 360):
+
+            if ( current_heading + error > 360):
               current_heading -= 360
-            elif ( current_heading + error <= 0):
+            elif ( current_heading + error < 0):
               current_heading += 360
+            
             error = abs( destination_angle - current_heading )
 
             if ( error <= acceptable_ending_error ):
