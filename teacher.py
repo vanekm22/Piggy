@@ -132,7 +132,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # Do the actual turn
         while(turning):
             # Get current gyro position
-            current_heading = self.get_heading(False)
+            current_heading = self.get_heading(False) % 360
 
             # Wrap the number if we are going across the endpoint.
             # current_heading = (current_heading + error) %360
