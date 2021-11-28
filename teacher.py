@@ -93,8 +93,8 @@ class PiggyParent(gopigo3.GoPiGo3):
     def gyro_pid(self, 
                  target_angle, 
                  top_speed = 80,
-                 low_speed = 15,
-                 kP  = 1, 
+                 low_speed = 16,
+                 kP  = 1.1, 
                  kI = 0.001, 
                  kD = 0.001):
 
