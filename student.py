@@ -58,7 +58,10 @@ class Piggy(PiggyParent):
     '''
 
     def vanek(self):
-        self.gyro_pid_right(90)
+        #self.gyro_pid_right(90)
+        # check gyro drift
+        while True:
+          self.get_heading(True)
         
     def square(self):
       self.fwd()
