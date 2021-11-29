@@ -58,27 +58,9 @@ class Piggy(PiggyParent):
     '''
 
     def vanek(self):
+      self.gyro_pid(90)
+                
         
-        #print( self.scan(50) )
-        self.gyro_pid(90)
-        
-
-
-
-        '''
-        ## CLOSER!!
-        
-        # check gyro drift
-        # take aways == gyro gets crazy errors when printing, but not without.
-        last_reading = self.get_heading(True)
-        while True:
-          current_reading = self.get_heading(False)
-          if abs(current_reading - last_reading) > 100:
-            while abs(current_reading - last_reading) > 100:
-              current_reading = self.get_heading(False)
-              print ("Found crazy reading")
-          last_reading = current_reading 
-        '''
         
     def square(self):
       self.fwd()
