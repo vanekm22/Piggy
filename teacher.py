@@ -97,36 +97,23 @@ class PiggyParent(gopigo3.GoPiGo3):
                  kP  = 0.4,
                  kI = 0, 
                  kD = 0,
-                 acceptable_ending_error = 1):
+                 acceptable_ending_error = 1.
+                 printing = True):
 
-        # Logfile of power added to my turn each frame 
         powerlist = []  
 
-        # Set start points of variables
         error = 0
         error_total = 0
         turning = True
         starting_angle = self.get_heading(False)
 
-        # If I'm at an endpoint for the loop, bring my starting angle to a number
-        # above or below my turn (depending on if my target angle is + or -)
-        
-        '''
-        if (starting_angle + target_angle > 360):
-            starting_angle -= 360
-        elif (starting_angle + target_angle < 0):
-            starting_angle += 360
-        '''
-        # determine what angle I am going to -- important if it wraps.
-        # destination_angle = starting_angle + target_angle
         destination_angle = (starting_angle + target_angle) % 360
-        # determine the direction of the turn
-        #if starting_angle < target_angle + starting_angle:
-        turn_direction = "right"
-        #else:
-         #   turn_direction = "left"
+        
+        if (target_angle > 0):
+          turn_direction = "right"
+        else:
+          turn_direction = "left"
 
-        # find initial error.
         error = abs(destination_angle - starting_angle)
         
         # Do the actual turn
@@ -134,20 +121,11 @@ class PiggyParent(gopigo3.GoPiGo3):
             # Get current gyro position
             current_heading = self.get_heading(False)
 
-            # Wrap the number if we are going across the endpoint.
-            # current_heading = (current_heading + error) %360
-            '''
-            if ( current_heading + error > 360):
-              current_heading -= 360
-            elif ( current_heading + error < 0):
-              current_heading += 360
-            '''
             error = (destination_angle - current_heading ) % 360 
             #print (error)
             
-            if ( error <= acceptable_ending_error ):
-                self.set_motor_power(self.MOTOR_LEFT, 0.0)
-                self.set_motor_power(self.MOTOR_RIGHT, 0.0)
+            if ( error <= acceptable_ending_error or current_heading >= destination_angle ):
+                self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
                 turning = False
 
             else:
@@ -166,19 +144,8 @@ class PiggyParent(gopigo3.GoPiGo3):
               elif (power < low_speed):
                   power = low_speed
 
-              ''' 
-              if (current_heading > destination_angle):# and "right" in turn_direction:
-                print("Went Past Angle")
-                self.stop()
-                print ("starting_angle: "+ str(starting_angle))
-                print ("Current angle: " + str(current_heading))
-                print ("target angle: " + str(destination_angle))
-                break
-                power = -low_speed
-              '''
               powerlist.append(power)
           
-
               #turn wheels
               if ("right" in turn_direction):
                   self.set_motor_power(self.MOTOR_LEFT, power)
@@ -187,15 +154,14 @@ class PiggyParent(gopigo3.GoPiGo3):
                   self.set_motor_power(self.MOTOR_LEFT, -power)
                   self.set_motor_power(self.MOTOR_RIGHT, power)
 
-            
-        
-        time.sleep(1.5)
-        print(powerlist)
-        final_heading = self.get_heading(False)
-        print( "Started at: "+ str(starting_angle) )
-        print ( "Final heading: "+ str(final_heading) )
-        print( "Trying to get to: " + str(destination_angle) )
-        print ( " Off by: "+ str(abs(final_heading - destination_angle)) )
+        if(printing):
+          time.sleep(1.5)
+          print(powerlist)
+          final_heading = self.get_heading(False)
+          print( "Started at: "+ str(starting_angle) )
+          print ( "Final heading: "+ str(final_heading) )
+          print( "Trying to get to: " + str(destination_angle) )
+          print ( " Off by: "+ str(abs(final_heading - destination_angle)) )
 
 
     def gyro_turn(self, deg):
